@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> <link rel="manifest" href="/manifest.json" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Timer Maths Quiz</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+  
+    .container {
+      max-width: 600px;
+      margin-top: 5%;
+    }
+  
+    .quiz-question {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  
+    .quiz-input {
+      font-size: 20px;
+      text-align: center;
+      width: 80px;
+      margin-top: 10px;
+    }
+  
+    .timer {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  
+    .encouragement {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  
+    .btn-container {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      margin-top: 20px;
+    }
+  
+    .btn-container button {
+      flex: 1;
+    }
+  
+    @media (max-width: 576px) {
+      .btn-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+  
+      .btn-container button {
+        margin: 5px 0;
+      }
+    }
+  </style>
+  
+</head>
+
+<body class="text-center">
+  <center>
+    <div class="container">
+      <h2 class="mb-4">Maths Quiz</h2>
+      <p class="timer" id="timer">Time left: 10s</p>
+      <div class="mb-3">
+        <p class="quiz-question" id="question"></p>
+        <input type="number" id="userAnswer" class="form-control quiz-input" onkeydown="if (event.key === 'Enter') checkAnswer()" />
+      </div>
+      <div class="btn-container">
+        <button class="btn btn-primary" onclick="checkAnswer()">Submit</button>
+        <button class="btn btn-danger" onclick="stopQuiz()">Stop Quiz</button>
+      </div>
+      <p class="encouragement" id="encouragement"></p>
+    </div>
+
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch(error => {
+        console.error('Service Worker registration failed:', error);
+      });
+  }
+
+      let timeLeft = 10;
+      let attempts = 0;
+      const timerDisplay = document.getElementById('timer');
+
+      function startTimer() {
+        const timerInterval = setInterval(() => {
+          timeLeft--;
+          timerDisplay.textContent = `Time left: ${timeLeft}s`;
+
+          if (timeLeft === 0) {
+            clearInterval(timerInterval);
+            if (attempts > 0) {
+              window.location.href = "../fail/index.html";
+            } else {
+              window.location.href = "../fail/index.html";
+            }
+          }
+        }, 1000);
+      }
+
+      function generateQuestion() {
+        const num1 = Math.floor(Math.random() * 12) + 1;
+        const num2 = Math.floor(Math.random() * 12) + 1;
+        document.getElementById("question").innerHTML = `${num1} × ${num2}`;
+      }
+
+      function checkAnswer() {
+        attempts++;
+        const userAnswer = document.getElementById("userAnswer").value;
+        const [num1, num2] = document.getElementById("question").innerHTML.split(" × ");
+        const correctAnswer = num1 * num2;
+
+        if (userAnswer == correctAnswer) {
+          generateQuestion();
+          document.getElementById("userAnswer").value = "";
+          resetTimer();
+          showEncouragement();
+        } else {
+          window.location.href = "../fail/index.html";
+        }
+      }
+
+      function resetTimer() {
+        timeLeft = 10;
+        startTimer();
+      }
+
+      function stopQuiz() {
+        if (attempts > 0) {
+          window.location.href = "../victory/index.html";
+        } else {
+          window.location.href = "../fail/index.html";
+        }
+      }
+
+      function showEncouragement() {
+        const encouragements = [
+          "Great job!",
+          "You're doing fantastic!",
+          "Keep up the good work!",
+          "You're a math wizard!",
+          // Add more encouragements as needed
+        ];
+
+        const randomIndex = Math.floor(Math.random() * encouragements.length);
+        const randomEncouragement = encouragements[randomIndex];
+        document.getElementById('encouragement').textContent = randomEncouragement;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        startTimer();
+        generateQuestion();
+      });
+    </script>
+  </center>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> <link rel="manifest" href="/manifest.json" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Victory Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #d4edda; /* Green background color for victory page */
+    }
+
+    .container {
+      max-width: 600px;
+      margin-top: 5%;
+      text-align: center;
+    }
+
+    .success-message {
+      font-size: 24px;
+      font-weight: bold;
+      color: #28a745;
+      margin-bottom: 20px;
+    }
+
+    .random-image {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .score {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .btn-container {
+      margin-top: 20px;
+    }
+
+    .btn-container a {
+      display: inline-block;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body class="text-center">
+
+  <div class="container">
+    <h2 class="mb-4">Congratulations! You succeeded!</h2>
+    <p class="success-message">You answered all questions correctly in time.</p>
+    
+    <p class="score" id="score"></p>
+    <div class="btn-container">
+      <a href="../index.html" class="btn btn-primary">Go Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch(error => {
+        console.error('Service Worker registration failed:', error);
+      });
+  }
+
+    const randomImages = [
+      'https://example.com/image1.jpg',
+      'https://example.com/image2.jpg',
+      'https://example.com/image3.jpg',
+      // Add more image URLs as needed
+    ];
+
+    // Select a random image from the array
+    const randomIndex = Math.floor(Math.random() * randomImages.length);
+    const randomImage = randomImages[randomIndex];
+
+    // Set the source of the image element
+    document.getElementById('randomImage').src = randomImage;
+
+    // Retrieve and display the score from localStorage
+    const score = localStorage.getItem('correctAnswers');
+    document.getElementById('score').textContent = `Your Score: ${score} questions correct.`;
+  </script>
+
+</body>
+
+</html>
