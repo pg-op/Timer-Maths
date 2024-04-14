@@ -9,6 +9,7 @@
   <style>
     body {
       background-color: #f8f9fa;
+      margin-top: 10px;
     }
 
     .container {
@@ -69,24 +70,6 @@
         console.error('Service Worker registration failed:', error);
       });
   }
-
-    const randomImages = [
-      'https://example.com/image1.jpg',
-      'https://example.com/image2.jpg',
-      'https://example.com/image3.jpg',
-      // Add more image URLs as needed
-    ];
-
-    // Select a random image from the array
-    const randomIndex = Math.floor(Math.random() * randomImages.length);
-    const randomImage = randomImages[randomIndex];
-
-    // Set the source of the image element
-    document.getElementById('randomImage').src = randomImage;
-
-    // Retrieve and display the correct answers count from localStorage
-    const correctAnswersCount = localStorage.getItem('correctAnswers');
-    document.getElementById('correctAnswers').textContent = `You answered ${correctAnswersCount} questions correctly.`;
   </script>
 
 </body>
