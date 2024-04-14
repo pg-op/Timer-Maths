@@ -89,7 +89,7 @@
         console.error('Service Worker registration failed:', error);
       });
   }
-
+     
       let timeLeft = 10;
       let attempts = 0;
       const timerDisplay = document.getElementById('timer');
@@ -118,7 +118,7 @@
       }
 
       function checkAnswer() {
-        attempts++;
+        
         const userAnswer = document.getElementById("userAnswer").value;
         const [num1, num2] = document.getElementById("question").innerHTML.split(" × ");
         const correctAnswer = num1 * num2;
@@ -154,8 +154,8 @@
           "You're a math wizard!",
           // Add more encouragements as needed
         ];
-
-        const randomIndex = Math.floor(Math.random() * encouragements.length);
+        attempts++;
+        const randomIndex = Math.floor(Math.random() * encouragements.length)+ "You did "+ attempts + " sums correct!" ;
         const randomEncouragement = encouragements[randomIndex];
         document.getElementById('encouragement').textContent = randomEncouragement;
       }
