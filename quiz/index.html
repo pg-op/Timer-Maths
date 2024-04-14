@@ -147,24 +147,19 @@
           window.location.href = "../fail/index.html";
         }
       }
+
 function generatePastelColors(numColors) {
   const colors = [];
-  for (let i = 0; i < numColors; i++) {
-    // Generate random pastel hue, saturation, and lightness values
+  while (colors.length < numColors) {
     const hue = Math.floor(Math.random() * 360);
     const saturation = Math.floor(Math.random() * 30) + 70; // 70% to 100% saturation
     const lightness = Math.floor(Math.random() * 30) + 70; // 70% to 100% lightness
 
-    // Ensure sufficient contrast for black text using WCAG guidelines
     const yiq = (lightness * 299 + saturation * 587 + hue * 114) / 1000;
     const contrastRatio = yiq > 128 ? Math.round((1.0 + 0.094) * ((yiq + 16) / 255)) : Math.round((4.5 + 0.094) * ((yiq + 0.05) / 255));
 
-    // If contrast is insufficient (less than 4.5), regenerate the color
-    if (contrastRatio < 4.5) {
-      i--; // Decrement counter to stay within desired number of colors
-      continue;
-    }
-
+    if (contrastRatio < 4.5) continue;
+    
     const colorString = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     colors.push(colorString);
   }
@@ -172,6 +167,7 @@ function generatePastelColors(numColors) {
 }
 
 pastelColors = generatePastelColors(100);
+
 
 
       function showEncouragement() {
