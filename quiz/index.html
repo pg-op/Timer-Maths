@@ -63,7 +63,7 @@
   
 </head>
 
-<body class="text-center">
+<body class="text-center" id="body">
   <center>
     <div class="container">
       <h2 class="mb-4">Maths Quiz</h2>
@@ -80,6 +80,19 @@
     </div>
 
     <script>
+      const pastelColors = [
+  "#FFCCCC", "#FFCC99", "#FFCC66", "#FFCC33", "#FFCC00", "#FF9966", "#FF9933", "#FF9900", "#FF6666", "#FF6633", 
+  "#FF6600", "#FF3333", "#FF3300", "#FF0000", "#FFCCCC", "#FFCC99", "#FFCC66", "#FFCC33", "#FFCC00", "#FF9966", 
+  "#FF9933", "#FF9900", "#FF6666", "#FF6633", "#FF6600", "#FF3333", "#FF3300", "#FF0000", "#FFCCCC", "#FFCC99", 
+  "#FFCC66", "#FFCC33", "#FFCC00", "#FF9966", "#FF9933", "#FF9900", "#FF6666", "#FF6633", "#FF6600", "#FF3333", 
+  "#FF3300", "#FF0000", "#FFCCCC", "#FFCC99", "#FFCC66", "#FFCC33", "#FFCC00", "#FF9966", "#FF9933", "#FF9900", 
+  "#FF6666", "#FF6633", "#FF6600", "#FF3333", "#FF3300", "#FF0000", "#FFCCCC", "#FFCC99", "#FFCC66", "#FFCC33", 
+  "#FFCC00", "#FF9966", "#FF9933", "#FF9900", "#FF6666", "#FF6633", "#FF6600", "#FF3333", "#FF3300", "#FF0000", 
+  "#FFCCCC", "#FFCC99", "#FFCC66", "#FFCC33", "#FFCC00", "#FF9966", "#FF9933", "#FF9900", "#FF6666", "#FF6633", 
+  "#FF6600", "#FF3333", "#FF3300", "#FF0000", "#FFCCCC", "#FFCC99", "#FFCC66", "#FFCC33", "#FFCC00", "#FF9966", 
+  "#FF9933", "#FF9900", "#FF6666", "#FF6633", "#FF6600", "#FF3333", "#FF3300", "#FF0000"
+];
+
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
       .then(registration => {
@@ -156,7 +169,10 @@
         attempts++;
         const randomIndex = Math.floor(Math.random() * encouragements.length) ;
         const randomEncouragement = encouragements[randomIndex];
+        const randomIndexTwo = Math.floor(Math.random() * pastelColors.length) ;
+        const randomColor = pastelColors[randomIndexTwo];
         document.getElementById('encouragement').textContent = randomEncouragement + "You did "+ attempts + " sums correct!";
+        document.getElementById('body').style.background = randomColor;
       }
 
       document.addEventListener("DOMContentLoaded", function () {
