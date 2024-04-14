@@ -155,9 +155,9 @@
           // Add more encouragements as needed
         ];
         attempts++;
-        const randomIndex = Math.floor(Math.random() * encouragements.length)+ "You did "+ attempts + " sums correct!" ;
+        const randomIndex = Math.floor(Math.random() * encouragements.length) ;
         const randomEncouragement = encouragements[randomIndex];
-        document.getElementById('encouragement').textContent = randomEncouragement;
+        document.getElementById('encouragement').textContent = randomEncouragement + "You did "+ attempts + " sums correct!";
       }
 
       document.addEventListener("DOMContentLoaded", function () {
