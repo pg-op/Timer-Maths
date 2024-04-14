@@ -67,7 +67,7 @@
   <center>
     <div class="container">
       <h2 class="mb-4">Maths Quiz</h2>
-      <p class="timer" id="timer">Time left: 15s</p>
+      <p class="timer" id="timer">Time left: 10s</p>
       <div class="mb-3">
         <p class="quiz-question" id="question"></p>
         <input type="number" id="userAnswer" class="form-control quiz-input" onkeydown="if (event.key === 'Enter') checkAnswer()" />
@@ -90,7 +90,7 @@
       });
   }
 
-      let timeLeft = 15;
+      let timeLeft = 10;
       let attempts = 0;
       const timerDisplay = document.getElementById('timer');
 
@@ -111,7 +111,7 @@
       }
 
       function generateQuestion() {
-        timeLeft = 15;
+        timeLeft = 10;
         const num2 = Math.floor(Math.random() * 12) + 1;
         const num1 = Math.floor(Math.random() * 12) + 1;
         document.getElementById("question").innerHTML = `${num1} × ${num2}`;
@@ -134,7 +134,7 @@
       }
 
       function resetTimer() {
-        timeLeft = 15;
+        timeLeft = 10;
       
       }
 
