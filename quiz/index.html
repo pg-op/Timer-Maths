@@ -176,7 +176,8 @@ const pastelColors = [
         const randomIndexTwo = Math.floor(Math.random() * pastelColors.length) ;
         const randomColor = pastelColors[randomIndexTwo];
         document.getElementById('encouragement').textContent = randomEncouragement + "You did "+ attempts + " sums correct!";
-        document.getElementById('body').style.background = randomColor;
+        const body = document.getElementById("body");
+         body.style.backgroundImage = `linear-gradient(to right, ${pastelColors[randomIndexTwo]}, white)`;
         document.getElementById('id').src = "claps.png";
       }
 
