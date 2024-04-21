@@ -194,13 +194,13 @@ const pastelColors = [
         const randomColor = pastelColors[randomIndexTwo];
         document.getElementById('encouragement').textContent = randomEncouragement + "You did "+ attempts + " sums correct!";
         const body = document.getElementById("body");
-        if(screen.width <768){
-         body.style.backgroundImage = `linear-gradient(to bottom, ${pastelColors[randomIndexTwo]}, white)`;}
+        if(screen.width < 768){
+         body.style.backgroundImage = `linear-gradient(to bottom, ${pastelColors[randomIndexTwo]},${pastelColors[randomIndexTwo]} white)`;}
         else{
       body.style.backgroundImage = `linear-gradient(to right, ${pastelColors[randomIndexTwo]}, white)`;}
-        document.getElementById('id').src = "claps.png";
+       
       }
-
+ document.getElementById('id').src = "/static/img/claps.png";
       document.addEventListener("DOMContentLoaded", function () {
         startTimer();
         generateQuestion();
