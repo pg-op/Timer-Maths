@@ -60,7 +60,10 @@
       }
     }
     #img{
- width:100vw;   
+  position:fixed;
+  bottom: 0;
+      left:0;
+  width: 100%;
 }
   </style>
   
@@ -80,7 +83,7 @@
         <button class="btn btn-danger" onclick="stopQuiz()">Stop Quiz</button>
       </div>
       <p class="encouragement" id="encouragement"></p>
-      <img id="img">
+      
     </div>
 
    
@@ -209,7 +212,7 @@ const pastelColors = [
         generateQuestion();
       });
     </script>
-  </center>
+  </center><img id="img">
 </body>
 
 </html>
