@@ -99,34 +99,23 @@
             console.error('Service Worker registration failed:', error);
           });
       }
-      const pastelColors = [
-  "#D7E7E9",
-  "#E2D9C9",
-  "#C2B49A",
-  "#E2DDC1",
-  "#E8E2DE",
-  "#E0D2BF",
-  "#D7D3C6",
-  "#E1DFE6",
-  "#E8E3D7",
-  "#DFE0E5",
-  "#E5E4E1",
-  "#F1F1F1",
-  "#E3E2E0",
-  "#E6E9E8",
-  "#E8E5E3",
-  "#E8E5E3",
-  "#DFE0E5",
-  "#D9E5E4",
-  "#E6E9E8",
-  "#D7DDEF",
-  "#E8E3D7",
-  "#D9E2E1",
-  "#E0DFF0",
-  "#D6D6D6",
-  "#C9C5B9",
-  "#D3B9C7"
-      ];
+      const background = document.getElementById("body");
+
+const getRandomNumber = (limit) => {
+  return Math.floor(Math.random() * limit);
+};
+const pastelColors = [];
+const getRandomColor = () => {
+  const h = getRandomNumber(360);
+
+pastelColors.push(`hsl(${h}deg, 100%, 90%)`);
+};
+
+
+setInterval(() => {
+  getRandomColor();
+}, 1500);
+
 
 
 
