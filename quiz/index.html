@@ -104,13 +104,17 @@
 const getRandomNumber = (limit) => {
   return Math.floor(Math.random() * limit);
 };
+const pastelColors = [];
 const getRandomColor = () => {
   const h = getRandomNumber(360);
 
-return`hsl(${h}deg, 100%, 90%)`;
+pastelColors.push(`hsl(${h}deg, 100%, 90%)`);
 };
 
 
+setInterval(() => {
+  getRandomColor();
+}, 1500);
 
 
 
@@ -154,7 +158,6 @@ return`hsl(${h}deg, 100%, 90%)`;
           resetTimer();
           showEncouragement();
         } else {
-          document.getElementById("body").innerHTML = "<h1>Sorry, your answer was wrong, so restart the game(or refresh the website) to play.</h1>";
           window.location.href = "../fail/index.html";
         }
       }
@@ -184,12 +187,14 @@ return`hsl(${h}deg, 100%, 90%)`;
         attempts++;
         const randomIndex = Math.floor(Math.random() * encouragements.length);
         const randomEncouragement = encouragements[randomIndex];
+        const randomIndexTwo = Math.floor(Math.random() * pastelColors.length);
+        const randomColor = pastelColors[randomIndexTwo];
         document.getElementById('encouragement').textContent = randomEncouragement + "You did " + attempts + " sums correct!";
         const body = document.getElementById("body");
         if (screen.width < 768) {
-          body.style.backgroundImage = `linear-gradient(to bottom, getRandomColor(), white)`;
+          body.style.backgroundImage = `linear-gradient(to bottom, ${randomColor}, white)`;
         } else {
-          body.style.backgroundImage = `linear-gradient(to right, getRandomColor(), white)`;
+          body.style.backgroundImage = `linear-gradient(to right, ${randomColor}, white)`;
         }
       }
 
