@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head> <link rel="manifest" href="/manifest.json" />
+<head>
+  <link rel="manifest" href="/manifest.json" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Timer Maths Quiz</title>
@@ -10,63 +11,64 @@
     body {
       background-color: #f8f9fa;
     }
-  
+
     .container {
       max-width: 600px;
       margin-top: 5%;
     }
-  
+
     .quiz-question {
       font-size: 24px;
       font-weight: bold;
     }
-  
+
     .quiz-input {
       font-size: 20px;
       text-align: center;
       width: 80px;
       margin-top: 10px;
     }
-  
+
     .timer {
       font-size: 18px;
       margin-bottom: 10px;
     }
-  
+
     .encouragement {
       font-size: 18px;
       margin-top: 20px;
     }
-  
+
     .btn-container {
       display: flex;
       flex-direction: row;
       gap: 10px;
       margin-top: 20px;
     }
-  
+
     .btn-container button {
       flex: 1;
     }
-  
+
     @media (max-width: 576px) {
       .btn-container {
         flex-direction: column;
         align-items: stretch;
       }
-  
+
       .btn-container button {
         margin: 5px 0;
       }
     }
-    #img{
-  position:fixed;
-  bottom: 0;
-      left:0;
-  width: 100%;
-}
+
+    .background-img {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
   </style>
-  
+
 </head>
 
 <body class="text-center" id="body">
@@ -83,48 +85,48 @@
         <button class="btn btn-danger" onclick="stopQuiz()">Stop Quiz</button>
       </div>
       <p class="encouragement" id="encouragement"></p>
-      
+
     </div>
 
-   
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(registration => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      })
-      .catch(error => {
-        console.error('Service Worker registration failed:', error);
-      });
-  } 
-const pastelColors = [
-  "#F0EBF2",  // Light blue-green
-  "#F2E8D2",  // Very light beige
-  "#D5C7A4",  // Light yellow-beige
-  "#F5F3E5",  // Very light gray-beige
-  "#F7F4EE",  // Very light pink-beige
-  "#F2EBCD",  // Light peach
-  "#EBE5D9",  // Light beige-brown
-  "#F4F2EF",  // Very light lavender
-  "#F7F5F0",  // Very light cream
-  "#F2F2EE",  // Very light blue-gray
-  "#F8F7F4",  // Very light dusty blue
-  "#F9F9F9",  // Lightest gray
-  "#F6F5F2",  // Very light blue
-  "#F8FAF9",  // Very light blue-green
-  "#F9F7F6",  // Very light cream
-  "#F8F7F6",  // Very light cream
-  "#F2F2EE",  // Very light blue-gray
-  "#EBF7F7",  // Light blue
-  "#F8FAF9",  // Very light blue-green
-  "#EBE7F2",  // Light blue-gray
-  "#F7F5F4",  // Very light cream
-  "#EBF4F4",  // Light blue
-  "#F2F1EF",  // Very light lavender
-  "#E0E0E0",  // Light gray
-  "#D9D3C2",  // Light beige (original)
-  "#E6C2CC"   // Light pink-purple (original)
-];
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch(error => {
+            console.error('Service Worker registration failed:', error);
+          });
+      }
+      const pastelColors = [
+        "#F0EBF2", // Light blue-green
+        "#F2E8D2", // Very light beige
+        "#D5C7A4", // Light yellow-beige
+        "#F5F3E5", // Very light gray-beige
+        "#F7F4EE", // Very light pink-beige
+        "#F2EBCD", // Light peach
+        "#EBE5D9", // Light beige-brown
+        "#F4F2EF", // Very light lavender
+        "#F7F5F0", // Very light cream
+        "#F2F2EE", // Very light blue-gray
+        "#F8F7F4", // Very light dusty blue
+        "#F9F9F9", // Lightest gray
+        "#F6F5F2", // Very light blue
+        "#F8FAF9", // Very light blue-green
+        "#F9F7F6", // Very light cream
+        "#F8F7F6", // Very light cream
+        "#F2F2EE", // Very light blue-gray
+        "#EBF7F7", // Light blue
+        "#F8FAF9", // Very light blue-green
+        "#EBE7F2", // Light blue-gray
+        "#F7F5F4", // Very light cream
+        "#EBF4F4", // Light blue
+        "#F2F1EF", // Very light lavender
+        "#E0E0E0", // Light gray
+        "#D9D3C2", // Light beige (original)
+        "#E6C2CC" // Light pink-purple (original)
+      ];
 
 
 
@@ -156,7 +158,7 @@ const pastelColors = [
       }
 
       function checkAnswer() {
-        
+
         const userAnswer = document.getElementById("userAnswer").value;
         const [num1, num2] = document.getElementById("question").innerHTML.split(" × ");
         const correctAnswer = num1 * num2;
@@ -173,7 +175,7 @@ const pastelColors = [
 
       function resetTimer() {
         timeLeft = 10;
-      
+
       }
 
       function stopQuiz() {
@@ -194,24 +196,27 @@ const pastelColors = [
           "You're a math wizard! ",
         ];
         attempts++;
-        const randomIndex = Math.floor(Math.random() * encouragements.length) ;
+        const randomIndex = Math.floor(Math.random() * encouragements.length);
         const randomEncouragement = encouragements[randomIndex];
-        const randomIndexTwo = Math.floor(Math.random() * 24)+1 ;
+        const randomIndexTwo = Math.floor(Math.random() * pastelColors.length);
         const randomColor = pastelColors[randomIndexTwo];
-        document.getElementById('encouragement').textContent = randomEncouragement + "You did "+ attempts + " sums correct!";
+        document.getElementById('encouragement').textContent = randomEncouragement + "You did " + attempts + " sums correct!";
         const body = document.getElementById("body");
-        if(screen.width < 768){
-         body.style.backgroundImage = `linear-gradient(to bottom, ${pastelColors[randomIndexTwo]},${pastelColors[randomIndexTwo]} white)`;}
-        else{
-      body.style.backgroundImage = `linear-gradient(to right,  ${pastelColors[randomIndexTwo]},${pastelColors[randomIndexTwo]} white)`;}
+        if (screen.width < 768) {
+          body.style.backgroundImage = `linear-gradient(to bottom, ${randomColor}, white)`;
+        } else {
+          body.style.backgroundImage = `linear-gradient(to right, ${randomColor}, white)`;
+        }
       }
 
 
-      document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("DOMContentLoaded", function() {
         startTimer();
         generateQuestion();
+      });
     </script>
-  </center><img id="img">
+  </center>
+  <img id="img" class="background-img">
 </body>
 
 </html>
