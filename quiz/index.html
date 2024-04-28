@@ -184,8 +184,6 @@ return`hsl(${h}deg, 100%, 90%)`;
         attempts++;
         const randomIndex = Math.floor(Math.random() * encouragements.length);
         const randomEncouragement = encouragements[randomIndex];
-        const randomIndexTwo = Math.floor(Math.random() * pastelColors.length);
-        const randomColor = pastelColors[randomIndexTwo];
         document.getElementById('encouragement').textContent = randomEncouragement + "You did " + attempts + " sums correct!";
         const body = document.getElementById("body");
         if (screen.width < 768) {
