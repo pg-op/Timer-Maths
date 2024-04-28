@@ -154,6 +154,7 @@ return`hsl(${h}deg, 100%, 90%)`;
           resetTimer();
           showEncouragement();
         } else {
+          document.getElementById("body").innerHTML = "<h1>Sorry, your answer was wrong, so restart the game(or refresh the website) to play.</h1>";
           window.location.href = "../fail/index.html";
         }
       }
