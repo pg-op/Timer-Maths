@@ -104,17 +104,13 @@
 const getRandomNumber = (limit) => {
   return Math.floor(Math.random() * limit);
 };
-const pastelColors = [];
 const getRandomColor = () => {
   const h = getRandomNumber(360);
 
-pastelColors.push(`hsl(${h}deg, 100%, 90%)`);
+return`hsl(${h}deg, 100%, 90%)`;
 };
 
 
-setInterval(() => {
-  getRandomColor();
-}, 1500);
 
 
 
@@ -192,9 +188,9 @@ setInterval(() => {
         document.getElementById('encouragement').textContent = randomEncouragement + "You did " + attempts + " sums correct!";
         const body = document.getElementById("body");
         if (screen.width < 768) {
-          body.style.backgroundImage = `linear-gradient(to bottom, ${randomColor}, white)`;
+          body.style.backgroundImage = `linear-gradient(to bottom, getRandomColor(), white)`;
         } else {
-          body.style.backgroundImage = `linear-gradient(to right, ${randomColor}, white)`;
+          body.style.backgroundImage = `linear-gradient(to right, getRandomColor(), white)`;
         }
       }
 
